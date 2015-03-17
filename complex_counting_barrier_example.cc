@@ -18,7 +18,7 @@ void thread_fun(int id, boost::barrier& cur_barrier, int& current) {
     incrementNumSafely(id, current);
     cur_barrier.wait();
 
-    // Leveraging lock_guards simplicity wtih explicit scoping
+    // Leveraging lock_guards simplicity with explicit scoping
     {
         boost::lock_guard<boost::mutex> lock(io);
 	std::cout << current << std::endl;
@@ -37,7 +37,6 @@ void thread_fun(int id, boost::barrier& cur_barrier, int& current) {
 int main() {
 
     boost::barrier bar(3);
-    boost::barrier bar_two(3);
 
     int current = 0;
     int id = 0;
